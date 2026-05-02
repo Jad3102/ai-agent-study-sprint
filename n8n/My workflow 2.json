@@ -1,0 +1,83 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "/buscar-usuario",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4bcbb07e-049f-47bf-a6d7-f6cfca34df57",
+      "name": "Webhook",
+      "webhookId": "29ed7f5c-e03c-40d9-89ec-bd4acf0d53ba"
+    },
+    {
+      "parameters": {
+        "url": "https://jsonplaceholder.typicode.com/users/1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "0aa5153a-dc5b-49a1-9adb-39027fb1008b",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        416,
+        0
+      ],
+      "id": "f0861c14-e9e1-4f03-a7ea-0a3c20cb12ce",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "d442bbb7-24ce-4623-8fda-c90983ce2b48",
+  "meta": {
+    "instanceId": "16771af2890a22630598ff231930cc48fa57266170a0602d06627e59548cc8fb"
+  },
+  "id": "n2E7SYCNnZ3B0J1f",
+  "tags": []
+}
