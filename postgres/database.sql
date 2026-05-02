@@ -20,3 +20,8 @@ UPDATE usuarios SET email = 'maemaisbonitadomundo@gmail.com' WHERE id=4;
 
 -- Deletando um user
 DELETE FROM usuarios WHERE id=4;
+
+-- Juntando tabelas
+INSERT INTO pedidos (produto, cliente_id) VALUES   ('notebook', 1),  ('mouse', 1),  ('teclado', 2);
+
+SELECT clientes.nome, pedidos.produto FROM clientes LEFT JOIN pedidos on clientes.id = pedidos.cliente_id;
