@@ -6,6 +6,11 @@ Recebi a oportunidade de concorrer a uma vaga que trabalha com automação e des
 Então, com o objetivo de me capacitar, decidi estudar de forma estruturada e documentar o processo — de 30 de abril a 5 de maio de 2025.
 Assim, este repositório é o registro dessa jornada.
 
+### Arquitetura
+```
+Cliente → Webhook N8N → API REST → Redis (cache) → PostgreSQL
+```
+
 ## Cronograma de Estudos
 
 | Dia | Foco | Status |
@@ -14,7 +19,8 @@ Assim, este repositório é o registro dessa jornada.
 | Sex 01/05 | PostgreSQL + API REST | ✅ CRUD com PostgreSQL · ✅ JOIN · ✅ API REST com Express |
 | Sáb 02/05 | N8N | ✅|
 | Seg 04/05 | Redis | ✅ |
-| Seg 04/05 | Projeto final | ⏳ |
+| Seg 04/05 | Projeto final(Integração válida de todas as tecnologias) | ✅ |
+
 
 ## Como rodar o projeto
  
