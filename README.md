@@ -12,8 +12,8 @@ Assim, este repositório é o registro dessa jornada.
 |---|---|---|
 | Qui 30/04 | JavaScript moderno | ✅ Arrow functions, destructuring, spread, array methods, fetch, import/export |
 | Sex 01/05 | PostgreSQL + API REST | ✅ CRUD com PostgreSQL · ✅ JOIN · ✅ API REST com Express |
-| Sáb 02/05 | N8N | ⏳ |
-| Dom 03/05 | Redis | ⏳ |
+| Sáb 02/05 | N8N | ✅|
+| Seg 04/05 | Redis | ✅ |
 | Seg 04/05 | Projeto final | ⏳ |
 
 ## Como rodar o projeto
