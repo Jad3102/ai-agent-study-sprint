@@ -10,11 +10,11 @@ app.use(express.json())
 const { Pool } = pg
 
 const pool = new Pool({
-  user: 'postgres',
-  password: 'jad310250',
-  host: 'localhost',
-  port: 5432,
-  database: 'estudos',
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host:  process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
   ssl: false,
   password_encryption: 'scram-sha-256'
 })
@@ -27,6 +27,27 @@ const redis = createClient()
 redis.on('error', err => console.log('Redis error:', err))
 await redis.connect()
 console.log('Redis conectado!')
+
+async function meuMiddleware(req, res, next) {
+  //adicionar uma chave ao ip
+  const chave = req.ip;
+  let chaveAtual = await redis.incr(chave);
+  //definir o limite máximo que essa chave pode chefar
+  const limiteMAX = 10
+
+  if (chaveAtual == 1) {
+    //pra que o cache não dure pra sempre
+    redis.expire(chave,60);
+  }
+  //a chave atingiu o limite máximo?
+  else if (chaveAtual >= limiteMAX){
+    return res.status(429).send(console.log('limite atingido'))
+  
+  }
+  next() // passa pro próximo
+}   
+//pra usar em todas as requisições
+app.use(meuMiddleware);
 
 //pra buscar users (GET)
 app.get('/usuarios', async (req, res) => {
@@ -67,7 +88,9 @@ app.put('/usuarios/:id', async (req, res) => {
     'UPDATE usuarios SET nome=$1, email=$2 WHERE id=$3 RETURNING *',
     [nome, email, id]
   )
-
+  
+  //limpa o cache
+  await redis.del('usuarios')
   res.json(resultado.rows[0])
 })
 
